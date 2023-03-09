@@ -21,9 +21,22 @@ h1 {
   margin: auto;
   text-align: center;
   color: white;
-  margin-top: 5%;
+  margin-top: 180px;
   font-family: 'Inconsolata', monospace;
-  letter-spacing: 2px;
+}
+hr{
+  margin-top: 35px;
+  margin-bottom: 35px;
+  width: 700px;
+}
+p{
+  text-align: justify;
+  text-justify: inter-word;
+  font-family: 'Inconsolata', monospace;
+  margin: auto;
+  font-size: 20px;
+  width: 675px;
+  color: white;
 }
 /*#download-button-div{
   display: flex;
@@ -34,64 +47,73 @@ h1 {
   margin: 0 auto;
   width: 60%;
 }
-#import-button-div{
-  margin: 10% auto 0 auto;
-  height: 120px;
-  width: 325px;
-}
-#download-button-div{
+#main-page-buttons{
+  display: flex;
   margin: 0 auto;
-  height: 120px;
-  width: 325px;
+  height: 60px;
+  width: 825px;
 }
 button{
-  --borderWidth: 2;
-  --buttonColor: yellow;
-  --bg: hsl(0, 0%, 5%);
-  --backdrop: linear-gradient(120deg, darkmagenta, #1ED760);
-  --fontSize: 1;
-  --horizontalPadding: 16;
-  --verticalPadding: 8;
-  background: var(--backdrop);
+  background: linear-gradient(120deg, rgb(22, 212, 57), #3d3d3d);
   background-size: 200% 100%;
   background-position: 100% 0;
   transition: background-position .5s;
-  border: calc(var(--borderWidth) * 1px) solid var(--buttonColor);
+
+  border: 1px solid white; 
   border-radius: 9999px;
+
   text-align: center;
   line-height: 24px;
-  color: yellow;
+  color: white;
   cursor: pointer;
-  font-size: calc(var(--fontSize) * 1rem);
+
+  font-size: 20x;
   font-weight: bold;
   font-family: 'Inconsolata' ,sans-serif;
   letter-spacing: 3px;
-  outline: transparent;
-  padding: calc(var(--verticalPadding) * 1px) calc(var(--horizontalPadding) * 1px);
-  position: relative;
-  text-decoration: none;
-  max-height: 50%;
-  min-height: 50%;
-  max-width: 80%;
-  min-width: 80%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  
+  width: 250px;
+  height: 40px;
+  margin: 30px auto 0px auto;
 }
 button:hover{
   background-position: 0 0;
 }
-
-
+#enter-playlist-url {
+  color: white;
+  margin: 0;
+  font-family: 'Inconsolata', monospace;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+#input-container {
+  display: none;
+  background-color: #383838;
+  padding: 20px 30px 30px 30px;
+  margin: 50px auto 0px auto;
+  width: 600px;
+  align-items: center;
+  border-radius: 20px;
+}
+input[type="text"] {
+    width: 97%;
+    font-family: 'Inconsolata', monospace;
+    font-size: 15px;
+    letter-spacing: 0px;
+    height: 25px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    padding: 4px 0px 4px 12px;
+}
+#retrieve-data-button{
+  width: 190px;
+}
 /* TABLE PAGE */
 .tablePage{
   /*background: hsl(0, 0%, 10%);*/
   height: 100%;
-  display: grid;
-  grid-template-rows: 40px;
-  grid-template-columns: 1fr;
-  grid-gap: 10px;
+  width: 100%;
+  display: inline-block;
   transform: translateX(0vh);
   transform: translateY(0vh);
   transition: transform 0.3s ease-in-out;
@@ -99,15 +121,38 @@ button:hover{
 .tablePage.show {
   transform: translateY(-100vh);
 }
+
+#table-page-title-container{
+  margin: 0 auto;
+  width: 60%;
+}
+
+#go-back-button-container{
+  margin: 35px auto 0px auto;
+  height: 60px;
+  width: 325px;
+}
+#export-button-container{
+  margin: 0 auto;
+  height: 60px;
+  width: 325px;
+}
+
 #playlist-title{
-  display: flex;
-  justify-content: center;
+  margin: auto;
+  text-align: center;
   color: white;
+  margin-top: 25px;
+  font-family: 'Inconsolata', monospace;
+  letter-spacing: 2px;
 }
 #playlist-count{
-  display: flex;
-  justify-content: center;
+  margin: 0 auto;
+  text-align: center;
   color: white;
+  margin-top: 15px;
+  font-family: 'Inconsolata', monospace;
+  letter-spacing: 2px;
 }
 table{
   margin: 0px auto;
@@ -115,9 +160,9 @@ table{
 }
 #table-container {
   overflow-y: auto;
-  margin: 0px auto;
-  width: 75%;
-  height: 60%;
+  margin: 15px auto 0 auto;
+  width: 1100px;
+  height: 550px;
   background-color: #282828;
   border-radius: 10px;
 }
@@ -132,6 +177,9 @@ table{
 thead {
   color: white;
   font-family: 'Inconsolata', sans-serif;
+}
+tbody{
+  color: white;
 }
 
 th {

@@ -1,12 +1,13 @@
 import './Main.css';
+import { downloadPlaylistData } from './playlist.js';
 
 function Main() {
     return (
-        <div class="content">
-            <div class="mainPage">
+        <div className="content">
+            <div className="mainPage">
                 <ApplicationHeader />
                 <ImportButton />
-                <DownloadButton />
+                <PlaylistInput />
             </div>
             <PlaylistTable />
         </div>
@@ -17,45 +18,74 @@ function ApplicationHeader(){
     return(
         <div id="app-title-text-container">
             <h1>Spotify Playlist Data Downloader</h1>
+            <hr></hr>
+            <p>This web application allows you to download data from a Spotify playlist and export it to various file formats, as well as import a file with playlist data directly to your spotify account.</p>
         </div>
     );
 }
 
 function ImportButton(){
     return(
-        <div id="import-button-div">
+        <div id="main-page-buttons">
+            <button onClick={showInput}>DOWNLOAD PLAYLIST</button>  
             <button>IMPORT PLAYLIST</button>
         </div>
     );
 }
 
-function DownloadButton(){
+function PlaylistInput(){
     
     return(
-        <div id="download-button-div">
-            <button onClick={showSlideIn}>DOWNLOAD PLAYLIST</button>
+        <div id="input-container">
+            <h2 id="enter-playlist-url">Enter playlist URL</h2>
+            <input id="playlist-input" type="text"></input>
+            <button id="retrieve-data-button" onClick={downloadPlaylist}>RETRIEVE DATA</button>
         </div>
     );
 }
 
 function PlaylistTable(){
     return(
-        <div class="tablePage">
-            <h2 id="playlist-title">Playlist Title</h2>
-            <h3 id="playlist-count">99 Songs</h3>
+        <div className="tablePage">
+            <div id="table-page-title-container">
+                <h2 id="playlist-title">Playlist Title</h2>
+                <h3 id="playlist-count">99 Songs</h3>
+            </div>
             <div id="table-container">
                 <table id="playlist-table">
-                <thead id='table-header'>   
+                <thead id='table-header'>  
+                    <TableHeader/> 
                 </thead>
-                    <TableHeader/>
-                <tbody>
                     
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Hightway to Hell</td>
+                        <td>Highway to Hell</td>
+                        <td>ACDC</td>
+                    </tr>
+
+                    <tr>
+                        <td>1</td>
+                        <td>Hightway to Hell</td>
+                        <td>Highway to Hell</td>
+                        <td>ACDC</td>
+                    </tr>
+
+                    <tr>
+                        <td>1</td>
+                        <td>Hightway to Hell</td>
+                        <td>Highway to Hell</td>
+                        <td>ACDC</td>
+                    </tr>
                 </tbody>
                 </table>
             </div>
-            <div id="export-button-container">
+            <div id="go-back-button-container">
                 <button id="go-back-button" onClick={showSlideOut}><img id="go-back-icon" src="public/goback.svg" alt="Go back"></img></button>
-                <button id="export-button" type="button" onclick="showSlideIn2()">Export</button>
+            </div>
+            <div id="export-button-container">
+                <button id="export-button" type="button" >Export</button>
             </div>
         </div>
     );
@@ -67,10 +97,22 @@ function TableHeader(){
             <th>#</th>
             <th>TITLE</th>
             <th>ALBUM</th>
-            <th class="center-element"><img id="time-icon" src='icons/timeclock.png'></img></th>
+            <th className="center-element"><img id="time-icon" src='icons/timeclock.png'></img></th>
         </tr>
     );
 }
+
+function showInput(){
+    document.getElementById("input-container").style.display = "block";
+}
+
+async function downloadPlaylist() {
+    const playlistUrl = document.getElementById("playlist-input").value;
+    const songs = await downloadPlaylistData(playlistUrl);
+    showSlideIn();
+    console.log(songs[1]);
+    /*updateTable(songs);*/
+};
 
 function showSlideIn() {
     const slideIn = document.querySelector('.mainPage');
