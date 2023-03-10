@@ -1,5 +1,5 @@
 body{
-  background: hsl(0, 0%, 10%);
+  background: linear-gradient(120deg, rgb(47, 47, 47), #1f1f1f);
   overflow: hidden;
 }
 .content{
@@ -157,6 +157,7 @@ input[type="text"] {
 table{
   margin: 0px auto;
   width: 100%;
+  border-collapse: collapse;
 }
 #table-container {
   overflow-y: auto;
@@ -191,6 +192,7 @@ th {
 td {
   padding: 6px 3px 3px 3px;
   text-align: left;
+  color: white;
 }
 td:first-child {
   border-top-left-radius: 3px; 
@@ -203,4 +205,8 @@ td:last-child {
 }
 #table-row:hover {
   background-color: #1f1f1f;
+}
+.center-element {
+  display: flex;
+  justify-content: center;
 }

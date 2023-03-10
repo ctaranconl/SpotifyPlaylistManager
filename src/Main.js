@@ -37,7 +37,7 @@ function PlaylistInput(){
     
     return(
         <div id="input-container">
-            <h2 id="enter-playlist-url">Enter playlist URL</h2>
+            <h2 id="enter-playlist-url">Enter playlist URL https://open.spotify.com/playlist/0iHdjYXY0R0oDGUdgGxgrO?si=569b6b773bc648b6</h2>
             <input id="playlist-input" type="text"></input>
             <button id="retrieve-data-button" onClick={downloadPlaylist}>RETRIEVE DATA</button>
         </div>
@@ -53,32 +53,12 @@ function PlaylistTable(){
             </div>
             <div id="table-container">
                 <table id="playlist-table">
-                <thead id='table-header'>  
-                    <TableHeader/> 
-                </thead>
-                    
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Hightway to Hell</td>
-                        <td>Highway to Hell</td>
-                        <td>ACDC</td>
-                    </tr>
-
-                    <tr>
-                        <td>1</td>
-                        <td>Hightway to Hell</td>
-                        <td>Highway to Hell</td>
-                        <td>ACDC</td>
-                    </tr>
-
-                    <tr>
-                        <td>1</td>
-                        <td>Hightway to Hell</td>
-                        <td>Highway to Hell</td>
-                        <td>ACDC</td>
-                    </tr>
-                </tbody>
+                    <thead id='table-header'>  
+                        <TableHeader/> 
+                    </thead>
+                        
+                    <tbody>
+                    </tbody>
                 </table>
             </div>
             <div id="go-back-button-container">
@@ -111,7 +91,7 @@ async function downloadPlaylist() {
     const songs = await downloadPlaylistData(playlistUrl);
     showSlideIn();
     console.log(songs[1]);
-    /*updateTable(songs);*/
+    UpdateTable(songs);
 };
 
 function showSlideIn() {
@@ -128,4 +108,64 @@ function showSlideOut() {
     slideIn2.classList.remove('show');
 }
 
+function UpdateTable(songs) {
+    
+    const playlistTable = document.getElementById('playlist-table');
+    const playlistName = songs[1];
+    document.getElementById("playlist-title").innerHTML = playlistName;
+    document.getElementById("playlist-count").innerHTML = songs[0].length + " songs";
+    songs[0].forEach((track, index) => {
+
+        const albumImageUrl = track.track.album.images[0].url || 'album.jpg';
+        //console.log(albumImageUrl)
+        //const albumImageUrl = track.album || 'album.jpg';
+        
+        const songTitle = track.track.name;
+        const songAlbum = track.track.album.name;
+        const artistName = track.track.artists[0].name;
+        const duration = msToMinutes(track.track.duration_ms);
+
+        const row = document.createElement('tr');
+        row.setAttribute("id", "table-row")
+        const indexCell = document.createElement('td');
+        //indexCell.setAttribute("className", "center-element");
+        const title = document.createElement('td');
+        const album = document.createElement('td');
+        const songDuration = document.createElement('td');
+        //songDuration.setAttribute("class", "center-element");
+
+        return(
+                
+                    <div id="row-title-container">
+                        <div id="album-list-images">
+                            <img src={albumImageUrl}></img>
+                        </div>
+                        <div>
+                            <p id="song-title-text">{songTitle}</p>
+                            <p id="artist-text">{artistName}</p>
+                        </div>
+                    </div>
+        );
+
+        indexCell.innerText = index + 1
+        //artist.innerText = track.track.artists.map(artist => artist.name).join(', ');
+        album.innerText = songAlbum;
+        let minutesDecimal = (duration/1000)/60;
+        let minutes = minutesDecimal;
+        songDuration.innerHTML = duration;
+
+        row.appendChild(indexCell);
+        row.appendChild(title);
+        row.appendChild(album);
+        row.appendChild(songDuration);
+
+        playlistTable.appendChild(row);
+    });
+
+}
+function msToMinutes(ms) {
+    const minutes = Math.floor(ms / 60000); // divide milliseconds by 60000 to get minutes
+    const seconds = Math.floor((ms % 60000) / 1000); // get the remaining seconds
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`; // return the result as a formatted string
+}
 export default Main;
