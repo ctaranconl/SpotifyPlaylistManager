@@ -1,5 +1,6 @@
 import './Main.css';
-import { downloadPlaylistData } from './playlist.js';
+import PlaylistView from './PlaylistView.js';
+import React, { useState } from 'react';
 
 function Main() {
     return (
@@ -9,7 +10,7 @@ function Main() {
                 <ImportButton />
                 <PlaylistInput />
             </div>
-            <PlaylistTable />
+            
         </div>
     )
 }
@@ -34,12 +35,29 @@ function ImportButton(){
 }
 
 function PlaylistInput(){
+    const [inputValue, setInputValue] = useState('');
+    const handleInputChange = (event) => {
+        setInputValue(event.target.value);
+    };
+    
+      const handleButtonClick = () => {
+        // Call a function that returns a component, passing the inputValue as a prop
+        const componentToRender = getComponentToRender(inputValue);
+        // Render the component that was returned
+        return componentToRender;
+      };
+
+      const getComponentToRender = (param) => {
+        // Call ComponentB, passing the parameter as a prop
+        return <PlaylistView playlistUrl={param} />;
+      }
+
     
     return(
         <div id="input-container">
             <h2 id="enter-playlist-url">Enter playlist URL https://open.spotify.com/playlist/0iHdjYXY0R0oDGUdgGxgrO?si=569b6b773bc648b6</h2>
-            <input id="playlist-input" type="text"></input>
-            <button id="retrieve-data-button" onClick={downloadPlaylist}>RETRIEVE DATA</button>
+            <input id="playlist-input" type="text" value={inputValue} onChange={handleInputChange} ></input>
+            <button id="retrieve-data-button" onClick={handleButtonClick}>RETRIEVE DATA</button>
         </div>
     );
 }
@@ -86,12 +104,19 @@ function showInput(){
     document.getElementById("input-container").style.display = "block";
 }
 
-async function downloadPlaylist() {
-    const playlistUrl = document.getElementById("playlist-input").value;
-    const songs = await downloadPlaylistData(playlistUrl);
+function DownloadPlaylist(url) {
+    /*const playlistUrl = document.getElementById("playlist-input").value;
+    const songs = await PlaylistView(playlistUrl);
     showSlideIn();
     console.log(songs[1]);
-    UpdateTable(songs);
+    updateTable(songs);*/
+    
+    return(
+        <div>
+            <PlaylistView playlistUrl={url} />
+        </div>
+    );
+
 };
 
 function showSlideIn() {
@@ -108,7 +133,7 @@ function showSlideOut() {
     slideIn2.classList.remove('show');
 }
 
-function UpdateTable(songs) {
+/*function updateTable(songs) {
     
     const playlistTable = document.getElementById('playlist-table');
     const playlistName = songs[1];
@@ -134,7 +159,7 @@ function UpdateTable(songs) {
         const songDuration = document.createElement('td');
         //songDuration.setAttribute("class", "center-element");
 
-        return(
+        let song_artist_cell = 
                 
                     <div id="row-title-container">
                         <div id="album-list-images">
@@ -144,10 +169,11 @@ function UpdateTable(songs) {
                             <p id="song-title-text">{songTitle}</p>
                             <p id="artist-text">{artistName}</p>
                         </div>
-                    </div>
-        );
+                    </div>              
+        ;
 
         indexCell.innerText = index + 1
+        title.innerHTML = song_artist_cell;
         //artist.innerText = track.track.artists.map(artist => artist.name).join(', ');
         album.innerText = songAlbum;
         let minutesDecimal = (duration/1000)/60;
@@ -162,7 +188,8 @@ function UpdateTable(songs) {
         playlistTable.appendChild(row);
     });
 
-}
+}*/
+
 function msToMinutes(ms) {
     const minutes = Math.floor(ms / 60000); // divide milliseconds by 60000 to get minutes
     const seconds = Math.floor((ms % 60000) / 1000); // get the remaining seconds
