@@ -35,22 +35,24 @@ function ImportButton(){
 }
 
 function PlaylistInput(){
+
     const [inputValue, setInputValue] = useState('');
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
     };
+
+    const getComponentToRender = (param) => {
+    // Call ComponentB, passing the parameter as a prop
+        return <PlaylistView playlistUrl={param} />;
+    }
     
-      const handleButtonClick = () => {
-        // Call a function that returns a component, passing the inputValue as a prop
+    const handleButtonClick = () => {
+    // Call a function that returns a component, passing the inputValue as a prop
         const componentToRender = getComponentToRender(inputValue);
         // Render the component that was returned
         return componentToRender;
-      };
+    };
 
-      const getComponentToRender = (param) => {
-        // Call ComponentB, passing the parameter as a prop
-        return <PlaylistView playlistUrl={param} />;
-      }
 
     
     return(
