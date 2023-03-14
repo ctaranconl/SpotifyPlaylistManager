@@ -1,7 +1,7 @@
+/*
 import './Main.css';
 import PlaylistView from './PlaylistView.js';
 import React, { useState } from 'react';
-
 function Main() {
     return (
         <div className="content">
@@ -42,7 +42,6 @@ function PlaylistInput(){
     };
 
     const getComponentToRender = (param) => {
-    // Call ComponentB, passing the parameter as a prop
         return <PlaylistView playlistUrl={param} />;
     }
     
@@ -107,11 +106,11 @@ function showInput(){
 }
 
 function DownloadPlaylist(url) {
-    /*const playlistUrl = document.getElementById("playlist-input").value;
+    const playlistUrl = document.getElementById("playlist-input").value;
     const songs = await PlaylistView(playlistUrl);
     showSlideIn();
     console.log(songs[1]);
-    updateTable(songs);*/
+    updateTable(songs);
     
     return(
         <div>
@@ -135,7 +134,7 @@ function showSlideOut() {
     slideIn2.classList.remove('show');
 }
 
-/*function updateTable(songs) {
+function updateTable(songs) {
     
     const playlistTable = document.getElementById('playlist-table');
     const playlistName = songs[1];
@@ -190,11 +189,13 @@ function showSlideOut() {
         playlistTable.appendChild(row);
     });
 
-}*/
+}
 
 function msToMinutes(ms) {
     const minutes = Math.floor(ms / 60000); // divide milliseconds by 60000 to get minutes
     const seconds = Math.floor((ms % 60000) / 1000); // get the remaining seconds
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`; // return the result as a formatted string
 }
+
 export default Main;
+*/

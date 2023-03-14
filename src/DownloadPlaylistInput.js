@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PlaylistView from './PlaylistView';
 
 const DownloadPlaylistInput = () => {
     const [inputValue, setInputValue] = useState('');
@@ -8,7 +9,10 @@ const DownloadPlaylistInput = () => {
 
     const getComponentToRender = (param) => {
     // Call ComponentB, passing the parameter as a prop
-        // return <PlaylistView playlistUrl={param} />;
+    console.log(param);
+        return (<>
+            <PlaylistView playlistUrl={param} />
+        </>);
     }
     
     const handleButtonClick = () => {
@@ -28,3 +32,5 @@ const DownloadPlaylistInput = () => {
         </div>
     );
 }
+
+export default DownloadPlaylistInput;

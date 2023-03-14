@@ -6,16 +6,14 @@ import MainPageButtons from './MainPageButtons';
 const ShowPlaylistDataManager = () => {
     const [action, setAction] = useState('');
     const handleMainButtons = (buttonType) => {
-        console.log('EXEC: ' + buttonType)
-        // TODO: Crate manager funtion
         if(buttonType === 'download'){
-            
+            setAction('download');
         }
     }
-    return (<>
+    return (<div>
         <MainPageButtons handleMainButtons = {handleMainButtons} />
-        {action && <>pato</>}
-    </>);
+        {action === 'download' && <DownloadPlaylistInput/>}
+    </div>);
 }
 
 export default ShowPlaylistDataManager;

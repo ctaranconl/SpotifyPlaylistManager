@@ -1,19 +1,19 @@
 import SpotifyWebApi from 'spotify-web-api-js';
 import PlaylistTable from './PlaylistTable';
 
-async function PlaylistView(playlistUrl) {
+const PlaylistView = (props) => {
     
-    console.log("INPUT " + playlistUrl);
+    console.log("INPUT " + props);
     /*const spotifyApi = new SpotifyWebApi();
-    const token = await getClientCredentialsToken(spotifyApi);    
+    const token = getClientCredentialsToken(spotifyApi);    
     spotifyApi.setAccessToken(token);
-    const listUrl = playlistUrl.playlistUrl;
+    const listUrl = props.playlistUrl;
     console.log("RESULT: " + listUrl)
     const playlistId = listUrl.split('/playlist/')[1].split('?')[0] || {};
     
     console.log("ID   "+playlistId)
     let allTracks = []
-    const response = await spotifyApi.getPlaylist(playlistId);
+    const response = spotifyApi.getPlaylist(playlistId);
     
     const playlistName=response.name;
     allTracks = allTracks.concat(response.tracks.items);
