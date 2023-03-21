@@ -1,4 +1,4 @@
-import './Main.css';
+import './css/Main.css';
 import ApplicationHeader from './ApplicationHeader';
 import ShowPlaylistDataManager from './ShowPlaylistDataManager';
 const TempMain = () => {
