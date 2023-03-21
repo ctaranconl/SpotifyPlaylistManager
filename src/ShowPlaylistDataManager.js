@@ -13,6 +13,7 @@ const ShowPlaylistDataManager = () => {
     return (<div>
         <MainPageButtons handleMainButtons = {handleMainButtons} />
         {action === 'download' && <DownloadPlaylistInput/>}
+        
     </div>);
 }
 
