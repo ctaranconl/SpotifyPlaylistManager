@@ -23,16 +23,14 @@ async function getClientCredentialsToken(spotifyApi){
     }
 }
 
-const DownloadPlaylistInput = () => {
+const DownloadPlaylistInput = (props) => {
     const [inputValue, setInputValue] = useState('');
-    
-    
-    const [playlistData, setPlaylistData] = useState([]);
 
     const handleClick = async () => {
 
         const spotifyApi = new SpotifyWebApi();
-        const token = getClientCredentialsToken(spotifyApi);    
+        const token = await getClientCredentialsToken(spotifyApi);
+        console.log("TOKEN: " + token);
         spotifyApi.setAccessToken(token);
         
         const listUrl = inputValue;
@@ -41,18 +39,19 @@ const DownloadPlaylistInput = () => {
         
         console.log("ID: "+playlistId)
         let allTracks = []
-        const playlist = spotifyApi.getPlaylist(playlistId);
+        const playlist = await spotifyApi.getPlaylist(playlistId);
         
-        /*const playlistName=playlist.name;
-        allTracks = allTracks.concat(playlist.tracks.items);
+        const playlistName=playlist.name
+        
+        console.log("Nombre playlist: " + playlistName);
+        /*allTracks = allTracks.concat(playlist.tracks.items);
         const numSongs = playlist.tracks.items.length;
         console.log("ID "+ numSongs);
         if (!playlist) {
             return <div>Loading...</div>;
         }
         return [allTracks, playlistName, numSongs];*/
-
-        setPlaylistData(playlist.tracks);
+        props.setPlaylistData(playlist.tracks.items);
       };
     
     /*const handleInputChange = (event) => {
@@ -74,14 +73,11 @@ const DownloadPlaylistInput = () => {
         return componentToRender;
     };*/
 
-
-    
     return(
         <div id="input-container">
             <h2 id="enter-playlist-url">Enter playlist URL https://open.spotify.com/playlist/0iHdjYXY0R0oDGUdgGxgrO?si=569b6b773bc648b6</h2>
             <input id="playlist-input" type="text" placeholder="Enter Playlist URL" value={inputValue} onChange={(event) => setInputValue(event.target.value)} ></input>
             <button id="retrieve-data-button" onClick={handleClick}>RETRIEVE DATA</button>
-            {playlistData.length > 0 && <h2>BUONAS</h2>}
         </div>
     );
 }

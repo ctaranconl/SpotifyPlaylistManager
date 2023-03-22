@@ -5,6 +5,7 @@ import MainPageButtons from './MainPageButtons';
 
 const ShowPlaylistDataManager = () => {
     const [action, setAction] = useState('');
+    const [playlistData, setPlaylistData] = useState([]);
     const handleMainButtons = (buttonType) => {
         if(buttonType === 'download'){
             setAction('download');
@@ -12,8 +13,8 @@ const ShowPlaylistDataManager = () => {
     }
     return (<div>
         <MainPageButtons handleMainButtons = {handleMainButtons} />
-        {action === 'download' && <DownloadPlaylistInput/>}
-        
+        {action === 'download' && <DownloadPlaylistInput setPlaylistData = {setPlaylistData}/>}
+        {playlistData.length > 0 && <h2>BUONAS</h2>}
     </div>);
 }
 
