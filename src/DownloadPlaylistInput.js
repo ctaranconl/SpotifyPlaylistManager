@@ -38,40 +38,17 @@ const DownloadPlaylistInput = (props) => {
         const playlistId = listUrl.split('/playlist/')[1].split('?')[0] || {};
         
         console.log("ID: "+playlistId)
-        let allTracks = []
+        
         const playlist = await spotifyApi.getPlaylist(playlistId);
         
         const playlistName=playlist.name
         
         console.log("Nombre playlist: " + playlistName);
-        /*allTracks = allTracks.concat(playlist.tracks.items);
-        const numSongs = playlist.tracks.items.length;
-        console.log("ID "+ numSongs);
-        if (!playlist) {
-            return <div>Loading...</div>;
-        }
-        return [allTracks, playlistName, numSongs];*/
-        props.setPlaylistData(playlist.tracks.items);
+
+        props.setPlaylistData(playlist);
+        props.setRetrieveData(true);
       };
     
-    /*const handleInputChange = (event) => {
-        setInputValue(event.target.value);
-    };
-
-    const getComponentToRender = (param) => {
-    // Call ComponentB, passing the parameter as a prop
-    console.log(param);
-        return (<>
-            <PlaylistView playlistUrl={param} />
-        </>);
-    }
-    
-    const handleButtonClick = () => {
-    // Call a function that returns a component, passing the inputValue as a prop
-        const componentToRender = getComponentToRender(inputValue);
-        // Render the component that was returned
-        return componentToRender;
-    };*/
 
     return(
         <div id="input-container">
@@ -81,9 +58,5 @@ const DownloadPlaylistInput = (props) => {
         </div>
     );
 }
-
-//{playlistData.length > 0 && <ShowPlaylistDataManager data={playlistData}/>}
-
-
 
 export default DownloadPlaylistInput;
