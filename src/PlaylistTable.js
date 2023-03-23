@@ -19,7 +19,7 @@ const RenderPlaylistTable = (props) => {
           <tbody>
             {props.playlistTable.tracks.items.map((item, index) => (
                 <tr key={index}>
-                  <td>{index}</td>
+                  <td>{index + 1}</td>
                   <td>{item.track.name}</td>
                   <td>{item.track.artists[0].name}</td>
                   <td>{item.track.album.name}</td>
