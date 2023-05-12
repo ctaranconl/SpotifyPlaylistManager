@@ -33,10 +33,25 @@ const DownloadPlaylistInput = (props) => {
         console.log("TOKEN: " + token);
         spotifyApi.setAccessToken(token);
         
+        
+        const spotifyRegex = /^(https:\/\/open\.spotify\.com\/(track|album|playlist|artist)\/[a-zA-Z0-9]+(\?si=[a-zA-Z0-9]+)?)$/;
+        if (!spotifyRegex.test(inputValue)) {
+            alert('Please enter a valid Spotify URL');
+            return;
+        }
+
+        const title_content = document.getElementById('app-title-text-container');
+        const title_buttons = document.getElementById('main-page-buttons');
+        const input_content = document.getElementById('input-container');
+        title_content.classList.add('title_hide');
+        title_buttons.classList.add('title_buttons_hide');
+        input_content.classList.add('input_hide');
+        
         const listUrl = inputValue;
         console.log("RESULT: " + listUrl)
         const playlistId = listUrl.split('/playlist/')[1].split('?')[0] || {};
         
+        console.log("XDLOL");
         console.log("ID: "+playlistId)
         
         const playlist = await spotifyApi.getPlaylist(playlistId);
@@ -52,7 +67,7 @@ const DownloadPlaylistInput = (props) => {
 
     return(
         <div id="input-container">
-            <h2 id="enter-playlist-url">Enter playlist URL https://open.spotify.com/playlist/0iHdjYXY0R0oDGUdgGxgrO?si=569b6b773bc648b6</h2>
+            <h2 id="enter-playlist-url">Enter playlist URL</h2>
             <input id="playlist-input" type="text" placeholder="Enter Playlist URL" value={inputValue} onChange={(event) => setInputValue(event.target.value)} ></input>
             <button id="retrieve-data-button" onClick={handleClick}>RETRIEVE DATA</button>
         </div>

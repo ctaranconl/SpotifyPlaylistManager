@@ -1,5 +1,6 @@
 body{
-  background: linear-gradient(120deg, rgb(47, 47, 47), #1f1f1f);
+  /*background: linear-gradient(120deg, rgb(47, 47, 47), #1f1f1f);*/
+  background-color: #1f1f1f;
   /*overflow: hidden;*/
 }
 .content{
@@ -46,27 +47,35 @@ p{
 #app-title-text-container{
   margin: 0 auto;
   width: 60%;
+  transition: opacity 0.5s ease-in-out;
+}
+.title_hide{
+  opacity: 0;
 }
 #main-page-buttons{
   display: flex;
   margin: 0 auto;
   height: 60px;
   width: 825px;
+  transition: opacity 0.5s ease-in-out;
+}
+.title_buttons_hide{
+  opacity: 0;
 }
 button{
   background: linear-gradient(120deg, rgb(22, 212, 57), #3d3d3d);
   background-size: 200% 100%;
   background-position: 100% 0;
   transition: background-position .5s;
-
+  
   border: 1px solid white; 
   border-radius: 9999px;
-
+  
   text-align: center;
   line-height: 24px;
   color: white;
   cursor: pointer;
-
+  
   font-size: 20x;
   font-weight: bold;
   font-family: 'Inconsolata' ,sans-serif;
@@ -94,6 +103,10 @@ button:hover{
   width: 600px;
   align-items: center;
   border-radius: 20px;
+  transition: opacity 0.5s ease-in-out;
+}
+.input_hide{
+  opacity: 0;
 }
 input[type="text"] {
     width: 97%;
@@ -104,26 +117,22 @@ input[type="text"] {
     border-radius: 20px;
     border: 1px solid #ccc;
     padding: 4px 0px 4px 12px;
+    margin-top: 15px;
 }
 #retrieve-data-button{
   width: 190px;
 }
 /* TABLE PAGE */
 .tablePage{
-  /*background: hsl(0, 0%, 10%);*/
-  background-color: #074107;
-  height: 800px;
-  width: 1300px;
+  height: 650px;
+  width: 100%;
   padding: 20px 10px 0px 10px;
   display: block;
-  margin: 0 auto;
+  margin: 0 auto !important;
   border-radius: 10px;
-  transform: translateX(0vh);
-  transform: translateY(0vh);
-  transition: transform 0.3s ease-in-out;
-}
-.tablePage.show {
-  transform: translateY(-100vh);
+  transition: opacity 6s ease-in-out 5s;
+  position: fixed;
+  top:0;
 }
 
 #table-page-title-container{
@@ -158,15 +167,17 @@ input[type="text"] {
   letter-spacing: 2px;
 }
 table{
+  padding-left: 10px;
+  padding-right: 10px;
+  border-spacing: 0px;
   margin: 0px auto;
   width: 100%;
-  border-collapse: collapse;
 }
 #table-container {
   overflow-y: auto;
   margin: 15px auto 0 auto;
   width: 1100px;
-  height: 80%;
+  height: 100%;
   background-color: #282828;
   border-radius: 10px;
 }
@@ -175,7 +186,7 @@ table{
 }
 
 #table-container::-webkit-scrollbar-thumb {
-  background-color: #282828;
+  background-color: white;
   border-radius: 10px;
 }
 thead {
@@ -187,10 +198,13 @@ tbody{
 }
 
 th {
+  top: 0;
+  position: sticky;
   padding: 10px;
   text-align: center;
   margin-bottom: 10px;
   color: white;
+  background-color: #282828;
 }
 td {
   padding: 6px 3px 3px 3px;
@@ -206,10 +220,74 @@ td:last-child {
   border-top-right-radius: 3px; 
   border-bottom-right-radius: 3px; 
 }
+#row-title-container{
+  display: flex;
+  margin: 10px 0px;
+}
+img {
+  width: 40px;
+}
+#song-title-text{
+  font-family: 'Bariol Light Bold', sans-serif;
+  font-size: 15px;
+  color: white;
+  margin: 0px 12px 0px 12px;
+}
+#artist-text{
+  font-family: 'Bariol Light Bold', sans-serif;
+  font-size: 15px;
+  color: #A4A4A4;
+  margin: 8px 12px 0px 12px;
+}
+
+#album-text {
+  font-family: 'Bariol Light Bold', sans-serif;
+  font-size: 15px;
+  color: white;
+}
+#index{
+  text-align: center;
+  padding: 0px 20px;
+}
+#song-duration{
+  text-align: center;
+
+}
 #table-row:hover {
-  background-color: #1f1f1f;
+  background-color: grey;
 }
 .center-element {
   display: flex;
   justify-content: center;
+}
+
+
+#format-select {
+  margin-right: 10px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  width: 70px;
+}
+#download-selector{
+  width:fit-content;
+  margin: 120px auto 0px auto;
+}
+#dw-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
