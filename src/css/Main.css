@@ -22,7 +22,7 @@ h1 {
   margin: auto;
   text-align: center;
   color: white;
-  margin-top: 180px;
+  margin-top: 80px;
   font-family: 'Inconsolata', monospace;
 }
 hr{
@@ -52,6 +52,12 @@ p{
 .title_hide{
   opacity: 0;
 }
+
+#gif{
+  margin: 15px auto 0px auto;
+  width: 300px;
+}
+
 #main-page-buttons{
   display: flex;
   margin: 0 auto;

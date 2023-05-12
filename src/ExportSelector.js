@@ -1,4 +1,6 @@
 import React, { useState,useEffect } from 'react';
+import XLSX from 'sheetjs-style';
+
 
 const ExportSelector = (props) => {
 
@@ -26,12 +28,15 @@ const ExportSelector = (props) => {
       const encodedUri = encodeURI(csvContent);
       const link = document.createElement('a');
       link.setAttribute('href', encodedUri);
-      link.setAttribute('download', 'my-playlist.csv');
+      link.setAttribute('download', props.playlistData.name + ' - [Spotify Playlist].csv');
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
     } else if (format === 'xlsx') {
-      // Generate and download XLSX file
+      const workbook = XLSX.utils.book_new();
+      const sheet = XLSX.utils.json_to_sheet(data);
+      XLSX.utils.book_append_sheet(workbook, sheet, props.playlistData.name);
+      XLSX.writeFile(workbook, props.playlistData.name + ' - [Spotify Playlist].xlsx');
     }
   };
 
