@@ -31,8 +31,7 @@ hr{
   width: 700px;
 }
 p{
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: center;
   font-family: 'Inconsolata', monospace;
   margin: auto;
   font-size: 20px;
@@ -283,7 +282,7 @@ img {
 }
 #download-selector{
   width:fit-content;
-  margin: 120px auto 0px auto;
+  margin: 0px auto;
 }
 #dw-button {
   background-color: #4CAF50;

@@ -30,7 +30,6 @@ const DownloadPlaylistInput = (props) => {
 
         const spotifyApi = new SpotifyWebApi();
         const token = await getClientCredentialsToken(spotifyApi);
-        console.log("TOKEN: " + token);
         spotifyApi.setAccessToken(token);
         
         
@@ -48,17 +47,11 @@ const DownloadPlaylistInput = (props) => {
         input_content.classList.add('input_hide');
         
         const listUrl = inputValue;
-        console.log("RESULT: " + listUrl)
         const playlistId = listUrl.split('/playlist/')[1].split('?')[0] || {};
-        
-        console.log("XDLOL");
-        console.log("ID: "+playlistId)
         
         const playlist = await spotifyApi.getPlaylist(playlistId);
         
         const playlistName=playlist.name
-        
-        console.log("Nombre playlist: " + playlistName);
 
         props.setPlaylistData(playlist);
         props.setRetrieveData(true);
