@@ -50,8 +50,6 @@ const DownloadPlaylistInput = (props) => {
         const playlistId = listUrl.split('/playlist/')[1].split('?')[0] || {};
         
         const playlist = await spotifyApi.getPlaylist(playlistId);
-        
-        const playlistName=playlist.name
 
         props.setPlaylistData(playlist);
         props.setRetrieveData(true);
